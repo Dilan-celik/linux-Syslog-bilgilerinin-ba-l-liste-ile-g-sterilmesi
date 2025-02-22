@@ -1,4 +1,4 @@
-Bu program, bir Linux sisteminin günlüklerini işlemek ve yönetmek amacıyla yazılmış bir C uygulamasıdır. Günlük (log) mesajları, sistemin çeşitli durumlarını ve aktivitelerini takip etmek için kullanılır. Bu program, log mesajlarını çift bağlı liste veri yapısı kullanarak saklar ve tarih sırasına göre sıralayarak kullnıcıya sunar. Kullanıcı, tüm günlük mesajlarını tek tek görebilir ve böylece sistemdeki aktiviteleri analiz edebilir.
+Bu program, bir Linux sisteminin günlüklerini işlemek ve yönetmek amacıyla yazılmış bir C uygulamasıdır. Günlük (log) mesajları, sistemin çeşitli durumlarını ve aktivitelerini takip etmek için kullanılır. Bu program, log mesajlarını çift bağlı liste veri yapısı kullanarak saklar ve tarih sırasına göre sıralayarak kullanıcıya sunar. Kullanıcı, tüm günlük mesajlarını tek tek görebilir ve böylece sistemdeki aktiviteleri analiz edebilir.
 
 Veri Yapısı
 Program, log mesajlarını saklamak için çift bağlı liste kullanır. Çift bağlı liste, her öğenin (log girdisinin) hem bir önceki öğeye hem de bir sonraki öğeye işaretçi içerdiği bir veri yapısıdır. Bu sayede, listeyi hem baştan sona hem de sondan başa doğru gezmek mümkündür.
