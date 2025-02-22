@@ -1,24 +1,17 @@
-Sistem Günlükleri (Log) Yönetim Programı
-Bu C programı, bir bağlı liste (linked list) veri yapısı kullanarak sistem günlüklerini (loglarını) yönetir. Program, her log kaydını tarih ve saat bilgisiyle birlikte dinamik olarak ekler ve ardından bu logları ekrana yazdırır. Ayrıca, belleği temizler.
+u program, bir Linux sisteminin günlüklerini işlemek ve yönetmek amacıyla yazılmış bir C uygulamasıdır. Günlük (log) mesajları, sistemin çeşitli durumlarını ve aktivitelerini takip etmek için kullanılır. Bu program, log mesajlarını çift bağlı liste veri yapısı kullanarak saklar ve tarih sırasına göre sıralayarak kullanıcıya sunar. Kullanıcı, tüm günlük mesajlarını tek tek görebilir ve böylece sistemdeki aktiviteleri analiz edebilir.
 
-Özellikler
-Gerçek zamanlı tarih ve saat bilgisini alır.
-Her log kaydını bağlı listeye ekler.
-Ekranda logları sırasıyla gösterir.
-Bellek temizliği yaparak sistem kaynaklarını verimli kullanır.
-Gereksinimler
-C derleyicisi (gcc veya benzeri)
-time.h kütüphanesi
-Kod Açıklaması
-Bu C programı, bağlı liste veri yapısını kullanarak sistem günlüklerini işler. Programda, her log kaydı oluşturulurken, sistemin o anki tarih ve saati alınır ve her kayda eklenir. Programda üç ana fonksiyon bulunmaktadır: log_ekle, loglari_yazdir ve loglari_temizle.
+Veri Yapısı
+Program, log mesajlarını saklamak için çift bağlı liste kullanır. Çift bağlı liste, her öğenin (log girdisinin) hem bir önceki öğeye hem de bir sonraki öğeye işaretçi içerdiği bir veri yapısıdır. Bu sayede, listeyi hem baştan sona hem de sondan başa doğru gezmek mümkündür.
 
-log_ekle Fonksiyonu
-log_ekle fonksiyonu, kullanıcı tarafından sağlanan mesajla birlikte, sistemin o anki tarih ve saat bilgisini alarak bir log kaydı oluşturur. Bu log kaydı, bağlı listeye eklenir. Eğer liste boşsa, yeni kaydı listeye baş olarak ekler, yoksa listeyi dolaşarak sonuna ekler.
+Her log girişi bir LogEntry yapısına sahiptir ve bu yapı şu alanlardan oluşur:
 
-Tarih ve saat alımı: Program, time.h kütüphanesini kullanarak mevcut tarih ve saati alır. strftime fonksiyonu ile alınan tarih, istenen formatta (gün, ay, yıl, saat:dakika:saniye) düzenlenir.
-Log mesajı ekleme: Mesaj, fonksiyona argüman olarak geçilir ve bağlı listeye eklenir.
-loglari_yazdir Fonksiyonu
-loglari_yazdir fonksiyonu, bağlı listedeki tüm log kayıtlarını sırasıyla ekrana yazdırır. Bu fonksiyon, listedeki her bir öğeyi ziyaret eder ve her birinin tarih ve mesaj bilgilerini ekrana yazar.
+tarih: Bu alan, log mesajının oluşturulduğu tarih ve saat bilgisini içerir. Tarih bilgisi, sistemin geçerli zamanına göre otomatik olarak alınır ve log kaydının oluşturulma zamanını yansıtır.
+mesaj: Log girdisinin içeriği olan mesajı barındırır. Bu mesaj, kullanıcının sistemdeki çeşitli olayları izleyebilmesi için gereklidir.
+onceki: Çift bağlı liste yapısının bir parçası olarak, bu işaretçi bir önceki log girdisini gösterir.
+sonraki: Diğer işaretçi gibi, bu da bir sonraki log girdisine işaret eder.
+Bu yapı sayesinde, loglar her zaman sıralı şekilde saklanır ve yeni loglar eklendikçe bu sıralama korunur.
 
-loglari_temizle Fonksiyonu
-loglari_temizle fonksiyonu, belleği temizlemek için kullanılır. Bu fonksiyon, bağlı listedeki her öğeyi serbest bırakır ve sistemin belleğini verimli bir şekilde kullanır.
+Fonksiyonlar
+log_ekle: Bu fonksiyon, kullanıcıdan gelen bir log mesajını alır ve çift bağlı listeye ekler. Log eklerken, geçerli tarih ve saat bilgisi otomatik olarak eklenir, böylece loglar doğru sırada kaydedilir.
+loglari_yazdir: Bu fonksiyon, tüm log girdilerini sırasıyla yazdırır. Her log mesajı, tarih bilgisiyle birlikte ekrana basılır.
+loglari_temizle: Program çalıştırıldıktan sonra, tüm log girdilerini serbest bırakmak ve belleği temizlemek için bu fonksiyon kullanılır. Bu, bellekte gereksiz veri kalmamasını sağlar ve programın düzgün bir şekilde kapanmasını temin eder.
